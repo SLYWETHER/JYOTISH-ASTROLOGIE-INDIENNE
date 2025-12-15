@@ -1,0 +1,602 @@
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyotish - Science de la Lumière Védique</title>
+    <!-- Chargement de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Configuration de base Tailwind */
+        :root {
+            --color-primary: #F5F5F0; /* Blanc Cassé / Crème */
+            --color-secondary: #0A1931; /* Bleu Nuit Védique */
+            --color-accent: #B8860B; /* Or Ancien Mat - DarkGoldenrod */
+            --color-text: #2c2c2c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        /* Styles spécifiques pour l'ambiance spirituelle/ancienne */
+        .header-nav, .calculator-form {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            background-color: white; /* Pour le contraste avec le fond crème */
+        }
+
+        /* Titre Héro avec police Serif */
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-secondary);
+        }
+
+        /* Animation subtile pour les éléments 3D/dynamiques (simulée) */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .floating-icon {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Style pour les liens de navigation actifs */
+        .nav-link.active {
+            color: var(--color-accent);
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        /* Conteneur principal pour les pages, masqué par défaut */
+        .content-section {
+            display: none;
+            padding-top: 2rem; /* Espace après le header */
+        }
+
+        .content-section.active {
+            display: block;
+        }
+        
+        /* Style pour les citations importantes dans le contenu */
+        .vedic-quote {
+            border-left: 4px solid var(--color-accent);
+            background-color: rgba(184, 134, 11, 0.05);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--color-secondary);
+        }
+
+    </style>
+</head>
+<body class="selection:bg-yellow-100 selection:text-gray-800">
+
+    <!-- BARRE DE NAVIGATION (Header) -->
+    <header class="header-nav shadow-lg fixed top-0 left-0 right-0 z-50 py-4 px-8 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo - Symbole Jyotish (SVG Or) -->
+            <a href="#" class="flex items-center space-x-2 text-xl font-bold" style="color: var(--color-secondary);" onclick="navigate('home')">
+                <!-- Symbole de roue stylisé en Or Ancien -->
+                <svg class="w-6 h-6" style="fill: var(--color-accent);" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 5l2.4 4.8L19 10l-4.2 3.8L16 19l-4-2.2-4 2.2 1.2-5.2L5 10l4.6-1.2L12 5z"/>
+                </svg>
+                <span>Jyotish</span>
+            </a>
+            
+            <!-- Liens de Navigation -->
+            <nav id="main-nav" class="space-x-4 md:space-x-8 flex text-gray-600 font-medium">
+                <a href="#home" class="nav-link px-2 py-1 hover:text-amber-700 transition duration-300 active" data-target="home" onclick="navigate('home')">Accueil</a>
+                <a href="#jyotish" class="nav-link px-2 py-1 hover:text-amber-700 transition duration-300" data-target="jyotish" onclick="navigate('jyotish')">Qu'est-ce que le Jyotish ?</a>
+                <a href="#process" class="nav-link px-2 py-1 hover:text-amber-700 transition duration-300" data-target="process" onclick="navigate('process')">Processus de Calcul</a>
+                <a href="#shop" class="nav-link px-2 py-1 hover:text-amber-700 transition duration-300" data-target="shop" onclick="navigate('shop')">Thèmes Personnalisés</a>
+                <a href="#contact" class="nav-link px-2 py-1 hover:text-amber-700 transition duration-300" data-target="contact" onclick="navigate('contact')">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16 max-w-7xl mx-auto px-6">
+        
+        <!-- SECTION 1 : ACCUEIL & CALCULATEUR -->
+        <section id="home" class="content-section active">
+            
+            <!-- SECTION HÉRO : Mise en avant du Calculateur -->
+            <div class="flex flex-col lg:flex-row items-center justify-between min-h-[50vh] pt-12">
+                
+                <!-- Texte Héro -->
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h1 class="hero-title text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+                        Découvrez votre Chemin Céleste avec la Science Védique
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Le Jyotish, ou "Science de la Lumière", éclaire votre conscience. Entrez vos informations pour révéler votre thème astral complet.
+                    </p>
+                    <a href="#calculator" class="inline-block px-8 py-4 text-white text-lg font-bold rounded-full transition duration-300 shadow-xl hover:shadow-2xl hover:scale-[1.02]" style="background-color: var(--color-accent);" onclick="document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });">
+                        Calculer mon Thème Astral Gratuit
+                    </a>
+                </div>
+
+                <!-- CALCULATEUR DE THÈME ASTRAL (Le Cœur du Site) -->
+                <div id="calculator" class="lg:w-1/2 w-full p-8 rounded-xl shadow-2xl relative calculator-form" style="border: 1px solid rgba(184, 134, 11, 0.3);">
+                    <!-- Icône 3D dynamique simulée 1 -->
+                    <div class="absolute -top-6 -right-6 floating-icon">
+                        <svg class="w-12 h-12" style="fill: var(--color-accent);" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 5l2.4 4.8L19 10l-4.2 3.8L16 19l-4-2.2-4 2.2 1.2-5.2L5 10l4.6-1.2L12 5z"/></svg>
+                    </div>
+                    
+                    <h2 class="text-3xl font-bold mb-6 text-center" style="color: var(--color-secondary);">
+                        Calcul Rapide de votre Thème Védique
+                    </h2>
+
+                    <form id="jyotish-form" class="space-y-6">
+                        <!-- Date de Naissance -->
+                        <div>
+                            <label for="date_naissance" class="block text-sm font-medium text-gray-700 mb-1">Date de Naissance :</label>
+                            <input type="date" id="date_naissance" required class="w-full p-3 border rounded-lg focus:ring-1 transition duration-200" style="border-color: rgba(184, 134, 11, 0.4); focus-ring: var(--color-accent);">
+                        </div>
+
+                        <!-- Heure de Naissance -->
+                        <div>
+                            <label for="heure_naissance" class="block text-sm font-medium text-gray-700 mb-1">Heure de Naissance (Format 24h) :</label>
+                            <input type="time" id="heure_naissance" required class="w-full p-3 border rounded-lg focus:ring-1 transition duration-200" style="border-color: rgba(184, 134, 11, 0.4); focus-ring: var(--color-accent);">
+                        </div>
+
+                        <!-- Lieu de Naissance -->
+                        <div>
+                            <label for="lieu_naissance" class="block text-sm font-medium text-gray-700 mb-1">Lieu de Naissance (Ville, Pays) :</label>
+                            <input type="text" id="lieu_naissance" placeholder="Ex: Paris, France" required class="w-full p-3 border rounded-lg focus:ring-1 transition duration-200" style="border-color: rgba(184, 134, 11, 0.4); focus-ring: var(--color-accent);">
+                        </div>
+                        
+                        <button type="submit" class="w-full mt-4 px-6 py-3 text-white text-lg font-bold rounded-lg transition duration-300 shadow-md hover:shadow-xl" style="background-color: var(--color-secondary); border: 2px solid var(--color-accent);">
+                            Obtenir mon Thème Astral
+                        </button>
+                    </form>
+
+                    <div id="result-message" class="mt-4 text-center text-sm font-medium hidden"></div>
+
+                </div>
+            </div>
+
+            <!-- SECTION SAVOIR ANCESTRAL (Reste sur la page d'accueil pour la présentation rapide) -->
+            <div class="mt-20 py-16 text-center" style="background-color: rgba(10, 25, 49, 0.05);">
+                <h2 class="hero-title text-4xl font-bold mb-4">
+                    Le Jyotish : La Sagesse des Anciens
+                </h2>
+                <p class="text-lg max-w-3xl mx-auto text-gray-700 mb-12">
+                    Contrairement à l'astrologie occidentale, le Jyotish, issu des Védas, utilise le zodiaque sidéral et se concentre sur l'évolution karmique et spirituelle. Une science millénaire au service de votre connaissance de Soi.
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Carte 1 -->
+                    <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 bg-white">
+                        <div class="floating-icon inline-block mb-4">
+                            <svg class="w-8 h-8" style="fill: var(--color-accent);" viewBox="0 0 24 24"><path d="M20 5H4c-1.11 0-2 .89-2 2v10c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V7c0-1.11-.89-2-2-2zm0 12H4V7h16v10zM10 9l5 3-5 3V9z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" style="color: var(--color-secondary);">Le Zodiaque Sidéral</h3>
+                        <p class="text-gray-600 text-sm">Une carte précise basée sur la position réelle des étoiles et des constellations pour une lecture authentique.</p>
+                    </div>
+
+                    <!-- Carte 2 -->
+                    <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 bg-white">
+                        <div class="floating-icon inline-block mb-4">
+                            <svg class="w-8 h-8" style="fill: var(--color-accent);" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" style="color: var(--color-secondary);">Les Périodes (Dasha)</h3>
+                        <p class="text-gray-600 text-sm">Découvrez le timing précis des événements de votre vie grâce au système prédictif unique du Jyotish.</p>
+                    </div>
+
+                    <!-- Carte 3 -->
+                    <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 bg-white">
+                        <div class="floating-icon inline-block mb-4">
+                            <svg class="w-8 h-8" style="fill: var(--color-accent);" viewBox="0 0 24 24"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 6a6 6 0 0 0-6 6h2a4 4 0 0 1 4-4V6z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mb-2" style="color: var(--color-secondary);">Nakshatras</h3>
+                        <p class="text-gray-600 text-sm">Les 27 demeures lunaires pour une analyse psychologique et karmique d'une finesse incomparable.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION 2 : QU'EST-CE QUE LE JYOTISH ? (Histoire et Principes) -->
+        <section id="jyotish" class="content-section">
+            <h2 class="hero-title text-5xl font-extrabold mb-8 text-center" style="color: var(--color-secondary);">L'Astrologie Jyotish : La Lumière de la Connaissance</h2>
+
+            <!-- SVG 1 : Symbole Cosmique Védique (Gold Mandala on Dark Blue) -->
+            <div class="text-center mb-10 w-full max-w-4xl mx-auto rounded-xl shadow-xl border" style="border-color: var(--color-accent); overflow: hidden; height: 250px;">
+                <svg viewBox="0 0 800 250" class="w-full h-full" style="background-color: var(--color-secondary);">
+                    <!-- Cercle central (Lumière) -->
+                    <circle cx="400" cy="125" r="80" style="fill: var(--color-accent); opacity: 0.8;"/>
+                    <!-- Rayons/Mandala Géométrique -->
+                    <g style="fill: none; stroke: var(--color-accent); stroke-width: 4; opacity: 0.5;">
+                        <circle cx="400" cy="125" r="110"/>
+                        <line x1="400" y1="15" x2="400" y2="235"/>
+                        <line x1="165" y1="125" x2="635" y2="125"/>
+                        <line x1="400" y1="125" x2="250" y2="215"/>
+                        <line x1="400" y1="125" x2="550" y2="35"/>
+                        <line x1="400" y1="125" x2="550" y2="215"/>
+                        <line x1="400" y1="125" x2="250" y2="35"/>
+                    </g>
+                    <text x="400" y="135" text-anchor="middle" font-size="24" font-family="Playfair Display, serif" fill="#F5F5F0">JYOTISH</text>
+                </svg>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-12">
+                <!-- Origine -->
+                <article class="p-8 rounded-xl shadow-lg bg-white" style="border-left: 4px solid var(--color-accent);">
+                    <h3 class="text-3xl font-bold mb-4" style="color: var(--color-secondary);">1. L'Héritage Védique et la Sagesse Ancestrale</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Le terme Jyotish, signifiant "Science de la Lumière" en Sanskrit, est l'un des six membres des disciplines auxiliaires des Védas (Vedanga), les textes sacrés de l'Inde ancienne dont les origines remontent à plus de 5000 ans. Il est considéré comme l'Œil de la Connaissance (Jñāna Chakṣu), car il permet de voir la connexion subtile et karmique entre l'âme, le cosmos et l'individu.
+                    </p>
+                    <div class="vedic-quote">
+                        "L'objectif du Jyotish n'est pas la fatalité, mais l'éclaircissement. Il montre le chemin, mais l'homme reste le maître de son libre arbitre."
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Initialement, son usage était astronomique et rituel, servant à déterminer les moments propices (Muhurta) pour les cérémonies védiques. Au fil des âges, il s'est développé en un système prédictif et psychologique profond, destiné à guider l'être humain dans son évolution spirituelle et matérielle.
+                    </p>
+                </article>
+
+                <!-- Les Composants Célestes -->
+                <article class="p-8 rounded-xl shadow-lg bg-white" style="border-left: 4px solid var(--color-accent);">
+                    <h3 class="text-3xl font-bold mb-4" style="color: var(--color-secondary);">2. Les Principes Cosmiques Détaillés</h3>
+                    
+                    <h4 class="text-xl font-semibold mt-6 mb-2" style="color: var(--color-accent);">Les Navagraha (Les Neuf Planètes)</h4>
+                    <p class="text-gray-700 mb-4">
+                        Le système Jyotish utilise le Soleil, la Lune, Mars, Mercure, Jupiter, Vénus, et Saturne, auxquels s'ajoutent les deux nœuds lunaires d'ombre (Rahu, la tête du dragon, et Ketu, la queue du dragon). Ces neuf forces cosmiques (Grahas) sont les indicateurs de nos tendances karmiques, de nos désirs non réalisés (Rahu) et de nos réalisations passées (Ketu).
+                    </p>
+
+                    <h4 class="text-xl font-semibold mt-6 mb-2" style="color: var(--color-accent);">Les Nakshatras (Constellations Lunaires)</h4>
+                    <p class="text-gray-700 mb-4">
+                        C'est l'une des plus grandes distinctions du Jyotish. Le zodiaque est divisé en **27 Nakshatras**, chacun s'étendant sur 13°20'. Ces constellations très fines sont liées à l'énergie de la Lune (Manas - l'esprit) et permettent une analyse beaucoup plus nuancée de la psyché et des influences subtiles sur la destinée individuelle.
+                    </p>
+
+                    <h4 class="text-xl font-semibold mt-6 mb-2" style="color: var(--color-accent);">Les Vargas (Thèmes Divisionnels)</h4>
+                    <p class="text-gray-700">
+                        Pour l'analyse approfondie, le thème natal (Rasi) est divisé en plusieurs cartes (Vargas). Par exemple, le Navamsha (D9) est essentiel pour juger du mariage et du destin spirituel, et le Dashamsha (D10) pour la carrière. Ces thèmes divisionnels permettent de zoomer sur des aspects spécifiques de la vie.
+                    </p>
+                </article>
+
+                <div class="text-center pt-8">
+                    <a href="#process" class="inline-block px-8 py-3 text-white text-lg font-bold rounded-full transition duration-300 hover:shadow-xl" style="background-color: var(--color-accent);" onclick="navigate('process')">
+                        Comprendre la précision du Calcul <span class="ml-2">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : PROCESSUS DE CALCUL -->
+        <section id="process" class="content-section">
+            <h2 class="hero-title text-5xl font-extrabold mb-8 text-center" style="color: var(--color-secondary);">Calculer votre Destin : Notre Méthodologie Védique</h2>
+            
+            <!-- SVG 2 : Précision de Calcul Antique (Dark Geometric pattern on Cream) -->
+            <div class="text-center mb-10 w-full max-w-3xl mx-auto rounded-xl shadow-lg border" style="border-color: rgba(10, 25, 49, 0.1); overflow: hidden; height: 200px;">
+                 <svg viewBox="0 0 800 200" class="w-full h-full" style="background-color: var(--color-primary);">
+                    <!-- Grande Roue (Mouvement, Précision) -->
+                    <circle cx="400" cy="100" r="70" style="fill: none; stroke: var(--color-secondary); stroke-width: 3; opacity: 0.5;"/>
+                    <line x1="400" y1="30" x2="400" y2="170" style="stroke: var(--color-secondary); stroke-width: 2; opacity: 0.6;"/>
+                    <line x1="330" y1="100" x2="470" y2="100" style="stroke: var(--color-secondary); stroke-width: 2; opacity: 0.6;"/>
+                    <!-- Points de Mesure/Précision -->
+                    <circle cx="400" cy="100" r="5" style="fill: var(--color-accent);"/>
+                    <circle cx="400" cy="30" r="5" style="fill: var(--color-secondary);"/>
+                    <circle cx="400" cy="170" r="5" style="fill: var(--color-secondary);"/>
+                    <text x="400" y="110" text-anchor="middle" font-size="16" font-family="Inter, sans-serif" fill="var(--color-secondary)">PRÉCISION</text>
+                </svg>
+            </div>
+
+            <div class="max-w-5xl mx-auto space-y-12">
+                
+                <!-- Étape 1: Collecte des Données -->
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-bold" style="background-color: var(--color-accent);">1</div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex-grow">
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--color-secondary);">Données de Naissance : Le Point Zéro</h3>
+                        <p class="text-gray-700">
+                            La précision est notre engagement. Nous demandons la **Date, l'Heure exacte (avec minutes)** et le **Lieu de Naissance** (Ville/Pays). Ces données sont transformées en coordonnées géographiques (latitude et longitude) et sont essentielles pour déterminer l'Ascendant (Lagna), le point de l'écliptique qui se lève à l'Est au moment précis de votre première inspiration. Une erreur de quelques minutes sur l'heure peut changer l'Ascendant et donc la lecture complète du thème.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Étape 2: Calcul Astronomique -->
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-bold" style="background-color: var(--color-accent);">2</div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex-grow">
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--color-secondary);">L'Ayanamsa et la Correction Sidérale</h3>
+                        <p class="text-gray-700">
+                            Notre logiciel applique une correction fondamentale (l'Ayanamsa) pour passer du système tropical (utilisé en Occident) au système **sidéral (Nirayana)**, aligné sur les étoiles fixes. Nous utilisons l'Ayanamsa reconnu par la tradition (généralement Lahiri ou Raman) pour garantir la fidélité aux textes classiques du Jyotish. Cette correction, qui compense la précession des équinoxes, est ce qui rend notre calcul authentiquement védique.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Étape 3: Établissement des Cartes et Dashas -->
+                <div class="flex items-start space-x-6">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-bold" style="background-color: var(--color-accent);">3</div>
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex-grow">
+                        <h3 class="text-2xl font-bold mb-2" style="color: var(--color-secondary);">Synthèse des Cartes et Périodes de Vie</h3>
+                        <p class="text-gray-700">
+                            Le système génère ensuite la carte natale (Rasi), les cartes divisionnelles (Vargas), et calcule le début et la fin de chaque période planétaire (Mahadasha et Antardasha) selon le système **Vimshottari Dasha**. Cette séquence temporelle est déterminée par la position de la Lune à la naissance et fournit un plan de route précis des influences planétaires à venir.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section Erreurs à éviter -->
+                <div class="bg-red-50 p-6 rounded-xl shadow-inner border border-red-200">
+                    <h3 class="text-2xl font-bold mb-4 text-red-700">⚠️ Attention aux Erreurs Courantes</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                        <li>**Heure approximative :** Ne pas connaître l'heure exacte de naissance est la cause d'erreurs majeures. Si l'Ascendant change, toutes les Maisons (domaines de vie) se décalent.</li>
+                        <li>**Confusion Tropical/Sidéral :** Les thèmes Jyotish ne doivent jamais être interprétés avec les règles de l'astrologie tropicale (occidentale).</li>
+                    </ul>
+                    <p class="text-gray-700 mt-4 font-semibold">
+                        Si votre heure de naissance est incertaine, une consultation avec un astrologue (Rectification de l'Heure) est recommandée avant tout calcul.
+                    </p>
+                </div>
+
+                <div class="text-center pt-8">
+                    <a href="#shop" class="inline-block px-8 py-3 text-white text-lg font-bold rounded-full transition duration-300 hover:shadow-xl" style="background-color: var(--color-accent);" onclick="navigate('shop')">
+                        Accéder aux Thèmes Personnalisés <span class="ml-2">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 : BOUTIQUE (Monétisation) -->
+        <section id="shop" class="content-section">
+            <h2 class="hero-title text-5xl font-extrabold mb-4 text-center" style="color: var(--color-accent);">Votre Plan d'Action Cosmique : Thèmes Spécialisés</h2>
+            <p class="text-xl text-gray-700 mb-12 text-center max-w-4xl mx-auto">
+                Le calcul gratuit vous offre la carte de base. Nos analyses approfondies sont des lampes de poche puissantes qui éclairent les recoins spécifiques de votre vie. Chaque thème est un rapport détaillé et karmique, livré en PDF.
+            </p>
+
+            <!-- SVG 3 : Étoile de Guidance Dorée (Gold Star/Key on Dark Blue) -->
+            <div class="text-center mb-10 w-full max-w-3xl mx-auto rounded-xl shadow-xl border" style="border-color: var(--color-secondary); overflow: hidden; height: 250px;">
+                <svg viewBox="0 0 800 250" class="w-full h-full" style="background-color: var(--color-secondary);">
+                    <!-- Grande Étoile/Éclat -->
+                    <path d="M400 30 L430 90 L495 95 L445 140 L460 205 L400 175 L340 205 L355 140 L305 95 L370 90 Z" style="fill: var(--color-accent);"/>
+                    <!-- Rayons Subtils -->
+                    <line x1="400" y1="125" x2="300" y2="70" style="stroke: var(--color-accent); stroke-width: 1; opacity: 0.3;"/>
+                    <line x1="400" y1="125" x2="500" y2="70" style="stroke: var(--color-accent); stroke-width: 1; opacity: 0.3;"/>
+                    <!-- Texte de Guidance -->
+                    <text x="400" y="120" text-anchor="middle" font-size="18" font-family="Playfair Display, serif" fill="var(--color-secondary)">GUIDANCE</text>
+                    <text x="400" y="215" text-anchor="middle" font-size="28" font-family="Playfair Display, serif" fill="var(--color-primary)">VOTRE CHEMIN</text>
+                </svg>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Thème Amour -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl text-center flex flex-col justify-between hover:scale-[1.03] transition duration-300" style="border-top: 5px solid var(--color-secondary);">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--color-secondary);">Chemin de l'Âme et Amour</h3>
+                        <!-- Texte réduit et ajustement de hauteur h-20 à h-24 pour plus de souplesse -->
+                        <p class="text-gray-600 mb-4 h-24 text-sm">Analyse karmique de vos relations (Maison 7) et de votre besoin émotionnel (Lune et Vénus). Comprenez votre recherche en amour et le type de partenaire pour votre évolution.</p>
+                        <ul class="text-sm text-gray-700 text-left mb-6 list-disc list-inside space-y-1">
+                            <li>Compatibilité (Samyoga)</li>
+                            <li>Influences des Dashas</li>
+                            <li>Blocages karmiques (Rahu/Ketu)</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-5xl font-extrabold mb-4" style="color: var(--color-accent);">10 €</p>
+                        <!-- Mise à jour du bouton pour appeler la fonction de paiement -->
+                        <button onclick="processPayment('Amour & Relations', 10.00)" class="w-full px-6 py-3 text-white font-bold rounded-lg transition duration-300 shadow-md hover:bg-opacity-90" style="background-color: var(--color-accent);">
+                            Commander l'Analyse Amour
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Thème Travail -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl text-center flex flex-col justify-between hover:scale-[1.03] transition duration-300" style="border-top: 5px solid var(--color-secondary);">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--color-secondary);">Vocation, Richesse et Carrière</h3>
+                        <!-- Texte réduit et ajustement de hauteur h-20 à h-24 pour plus de souplesse -->
+                        <p class="text-gray-600 mb-4 h-24 text-sm">Analyse des Maisons 10 (action publique) et 11 (gains), et de l'influence de Jupiter et Saturne. Trouvez votre vraie vocation et le chemin vers l'abondance.</p>
+                        <ul class="text-sm text-gray-700 text-left mb-6 list-disc list-inside space-y-1">
+                            <li>Meilleurs secteurs pro (D-10)</li>
+                            <li>Périodes d'évolution de carrière</li>
+                            <li>Analyse des sources de gains</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-5xl font-extrabold mb-4" style="color: var(--color-accent);">10 €</p>
+                        <!-- Mise à jour du bouton pour appeler la fonction de paiement -->
+                        <button onclick="processPayment('Carrière & Succès', 10.00)" class="w-full px-6 py-3 text-white font-bold rounded-lg transition duration-300 shadow-md hover:bg-opacity-90" style="background-color: var(--color-accent);">
+                            Commander l'Analyse Carrière
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Thème Spiritualité -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl text-center flex flex-col justify-between hover:scale-[1.03] transition duration-300" style="border-top: 5px solid var(--color-secondary);">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2" style="color: var(--color-secondary);">Karma, Dharma et Éveil</h3>
+                        <!-- Texte réduit et ajustement de hauteur h-20 à h-24 pour plus de souplesse -->
+                        <p class="text-gray-600 mb-4 h-24 text-sm">Étude de vos nœuds lunaires (Rahu et Ketu), Maison 9 (Dharma) et Maison 12 (Moksha). Comprenez les leçons que votre âme doit apprendre.</p>
+                        <ul class="text-sm text-gray-700 text-left mb-6 list-disc list-inside space-y-1">
+                            <li>But de votre incarnation (Dharma)</li>
+                            <li>Obstacles des vies passées (Karma)</li>
+                            <li>Recommandations védiques (Upayas)</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-5xl font-extrabold mb-4" style="color: var(--color-accent);">10 €</p>
+                        <!-- Mise à jour du bouton pour appeler la fonction de paiement -->
+                        <button onclick="processPayment('Karma & Spiritualité', 10.00)" class="w-full px-6 py-3 text-white font-bold rounded-lg transition duration-300 shadow-md hover:bg-opacity-90" style="background-color: var(--color-accent);">
+                            Commander l'Analyse Karmique
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 p-8 rounded-xl shadow-xl" style="background-color: var(--color-secondary);">
+                <h3 class="text-3xl font-bold mb-4 text-white hero-title">Pourquoi seulement 10 € ?</h3>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Nous souhaitons rendre l'accès à la sagesse védique simple. Ce prix couvre l'expertise de notre astrologue pour générer un rapport ultra-précis basé sur les données calculées et interprétées selon la tradition. C'est l'investissement le plus éclairé que vous ferez pour votre connaissance de Soi.
+                </p>
+            </div>
+            
+            <!-- SECTION DE CONFIRMATION DE COMMANDE (Modale simulée) -->
+            <div id="payment-confirmation" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] flex items-center justify-center p-4">
+                <div class="bg-white p-8 rounded-xl shadow-2xl max-w-lg w-full text-center">
+                    <h3 class="hero-title text-3xl mb-4" style="color: var(--color-secondary);">Étape 2 : Confirmer la Commande</h3>
+                    <p class="text-gray-700 mb-6">
+                        Veuillez d'abord compléter le paiement sur PayPal. Une fois le paiement effectué, \textbf{cliquez sur le bouton ci-dessous} pour envoyer le récapitulatif de votre commande à l'astrologue et lancer le calcul du thème.
+                    </p>
+                    <p class="text-xl font-bold mb-4" id="order-summary"></p>
+                    
+                    <a id="email-order-link" href="#" class="inline-block mt-4 px-6 py-3 text-white font-bold rounded-lg transition duration-300 shadow-md hover:bg-opacity-90" 
+                       style="background-color: var(--color-accent); border: 2px solid var(--color-secondary);">
+                        J'ai Payé : Envoyer ma Commande !
+                    </a>
+                    <button onclick="document.getElementById('payment-confirmation').classList.add('hidden')" class="mt-4 text-gray-500 hover:text-gray-800 block w-full text-sm">
+                        Annuler / Fermer
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 : CONTACT (Basique, pour la complétude) -->
+        <section id="contact" class="content-section text-center py-16">
+            <h2 class="hero-title text-4xl font-bold mb-6" style="color: var(--color-secondary);">Contactez l'Astrologue</h2>
+            <div class="max-w-md mx-auto p-8 rounded-xl shadow-lg bg-white">
+                <p class="mb-4 text-lg">
+                    Pour toute question spécifique sur nos services ou le Jyotish, n'hésitez pas à nous contacter.
+                </p>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Votre Nom" class="w-full p-3 border rounded-lg" style="border-color: rgba(184, 134, 11, 0.4);">
+                    <input type="email" placeholder="Votre Email" required class="w-full p-3 border rounded-lg" style="border-color: rgba(184, 134, 11, 0.4);">
+                    <textarea placeholder="Votre Message" rows="4" class="w-full p-3 border rounded-lg" style="border-color: rgba(184, 134, 11, 0.4);"></textarea>
+                    <button type="submit" class="w-full px-6 py-3 text-white font-bold rounded-lg transition duration-300" style="background-color: var(--color-accent);">
+                        Envoyer le Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIED DE PAGE -->
+    <footer class="mt-12 py-8 border-t" style="border-top-color: rgba(10, 25, 49, 0.1);">
+        <div class="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
+            &copy; 2025 Jyotish - Science de la Lumière. Tous droits réservés. | Mentions Légales | Politique de Confidentialité
+        </div>
+    </footer>
+
+    <script>
+        // --- CONSTANTE À MODIFIER ---
+        // REMPLACEZ CECI PAR VOTRE VÉRITABLE ID VENDEUR PAYPAL
+        const PAYPAL_BUSINESS_ID = '748NMSTPST7WU'; // REMPLACÉ PAR LA VALEUR DEMANDÉE
+        const ASTROLOGER_EMAIL = 'astrologiejyotish@gmail.com';
+        // ---------------------------
+
+        // Fonction pour gérer la navigation dans l'Application Page Unique (SPA)
+        function navigate(targetId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-target') === targetId) {
+                    link.classList.add('active');
+                }
+            });
+
+            window.scrollTo(0, 0);
+        }
+        
+        // Fonction pour gérer le clic sur les thèmes personnalisés
+        function processPayment(itemName, itemPrice) {
+            if (PAYPAL_BUSINESS_ID === 'VOTRE_ID_VENDEUR_PAYPAL') {
+                // Cette alerte ne devrait plus s'afficher car la valeur est maintenant définie
+                alert("Veuillez d'abord remplacer 'VOTRE_ID_VENDEUR_PAYPAL' dans le code par votre véritable ID PayPal !");
+                return;
+            }
+
+            // 1. Construire le lien PayPal
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${PAYPAL_BUSINESS_ID}&item_name=${encodeURIComponent(itemName)}&amount=${itemPrice.toFixed(2)}&currency_code=EUR&return=http://votresite.com/success&cancel_return=http://votresite.com/cancel`;
+            
+            // 2. Construire le corps de l'e-mail pour la confirmation de commande
+            const emailBody = encodeURIComponent(
+                `CONFIRMATION DE COMMANDE PAYPAL\n\n` +
+                `Thème commandé : ${itemName}\n` +
+                `Montant payé : ${itemPrice.toFixed(2)} EUR\n\n` +
+                `Veuillez fournir ci-dessous les informations nécessaires au calcul du thème :\n` +
+                `1. Votre nom et prénom :\n` +
+                `2. Votre date de naissance (JJ/MM/AAAA) :\n` +
+                `3. Votre heure de naissance (HH:MM) :\n` +
+                `4. Votre lieu de naissance (Ville, Pays) :\n\n` +
+                `---`
+            );
+            
+            const mailtoLink = `mailto:${ASTROLOGER_EMAIL}?subject=${encodeURIComponent(`Commande Thème Jyotish : ${itemName}`)}&body=${emailBody}`;
+            
+            // 3. Afficher la modale de confirmation et préparer le lien d'envoi
+            const confirmationModal = document.getElementById('payment-confirmation');
+            const orderSummary = document.getElementById('order-summary');
+            const emailOrderLink = document.getElementById('email-order-link');
+
+            orderSummary.textContent = `Thème sélectionné : ${itemName} (10 €)`;
+            emailOrderLink.href = mailtoLink;
+            
+            confirmationModal.classList.remove('hidden');
+
+            // 4. Ouvrir PayPal dans un nouvel onglet
+            window.open(paypalUrl, '_blank');
+        }
+
+
+        document.getElementById('jyotish-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const date = document.getElementById('date_naissance').value;
+            const time = document.getElementById('heure_naissance').value;
+            const location = document.getElementById('lieu_naissance').value;
+            const messageDiv = document.getElementById('result-message');
+            
+            messageDiv.classList.remove('hidden');
+            
+            if (date && time && location) {
+                // Construction du corps de l'e-mail pour le CALCUL GRATUIT
+                const emailBody = encodeURIComponent(
+                    `Date de Naissance: ${date}\n` +
+                    `Heure de Naissance: ${time}\n` +
+                    `Lieu de Naissance: ${location}\n\n` +
+                    `---\n` +
+                    `Ceci est une demande de calcul de thème astral GRATUIT envoyée depuis le site web.`
+                );
+                
+                const mailtoLink = `mailto:${ASTROLOGER_EMAIL}?subject=${encodeURIComponent('Nouvelle Demande de Calcul de Thème Jyotish (GRATUIT)')}&body=${emailBody}`;
+
+                // Affichage du message avec le lien mailto:
+                messageDiv.innerHTML = `
+                    <p class="mb-3">✅ **Informations enregistrées !**</p>
+                    <p>Pour lancer le calcul gratuit, merci de cliquer sur le bouton ci-dessous</p>
+                    <a href="${mailtoLink}" class="inline-block mt-4 px-6 py-3 text-white font-bold rounded-lg transition duration-300 shadow-md hover:bg-opacity-90" 
+                       style="background-color: var(--color-secondary); border: 2px solid var(--color-accent);" target="_blank">
+                        Envoyer mes Données de Calcul GRATUIT
+                    </a>
+                    <p class="mt-3 font-semibold">
+                        Pour une analyse plus poussée (Amour, Carrière), <a href="#shop" onclick="navigate('shop')" class="underline" style="color: var(--color-accent);">découvrez nos thèmes personnalisés à 10 € !</a>
+                    </p>
+                `;
+                messageDiv.className = 'mt-4 text-center bg-yellow-50 text-gray-800 font-medium p-4 rounded-lg shadow-inner border';
+                
+            } else {
+                messageDiv.textContent = 'Veuillez remplir tous les champs (Date, Heure, Lieu de Naissance).';
+                messageDiv.className = 'mt-4 text-center text-red-700 font-bold p-3 bg-red-100 rounded-lg';
+            }
+        });
+
+        // Gérer le cas initial si un fragment d'URL est présent
+        window.onload = () => {
+            const initialHash = window.location.hash.substring(1) || 'home';
+            navigate(initialHash);
+        };
+    </script>
+</body>
+</html>
