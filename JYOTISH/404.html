@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Non Trouvée - Redirection</title>
+    <script>
+        // Ce script implémente la redirection pour les applications à page unique (SPA) sur GitHub Pages,
+        // en convertissant les chemins d'accès non trouvés (404) en ancres (#) pour le routage JS.
+        
+        const currentPath = window.location.pathname;
+        const hash = window.location.hash; // Récupère l'ancre existante (#shop, #jyotish, etc.)
+        
+        // 1. Déterminer le chemin de base du dépôt (ex: /nom-du-depot/ ou /)
+        // On filtre les segments de chemin non pertinents (vides, index.html, 404.html).
+        const pathSegments = currentPath.split('/').filter(s => s.length > 0 && s !== 'index.html' && s !== '404.html');
+        let repoPath = '/'; 
 
+        if (pathSegments.length > 0 && pathSegments[0] !== 'index.html') {
+            // Si le premier segment n'est pas index.html, c'est le nom du dépôt
+            repoPath = '/' + pathSegments[0] + '/';
+        }
+
+        // 2. Tenter de convertir le chemin d'accès (non-hash) en ancre si le hash est vide.
+        let finalHash = hash;
+        if (!finalHash) {
+            // Si le chemin non trouvé est plus long que le repoPath (ex: /repo/shop),
+            // on essaie de récupérer le dernier segment comme ancre (#shop).
+            if (pathSegments.length > 1) {
+                 finalHash = '#' + pathSegments[pathSegments.length - 1];
+            } else if (pathSegments.length === 1 && pathSegments[0] !== 'index.html') {
+                 // Gère le cas où l'utilisateur a tapé une URL courte sans hash (ex: /repo/shop)
+                 finalHash = '#' + pathSegments[pathSegments.length - 1];
+            }
+        }
+        
+        // 3. Redirection finale : (https://user.github.io) + (/repo/) + (index.html) + (#shop)
+        const redirectUrl = window.location.origin + repoPath + 'index.html' + finalHash;
+        
+        // Exécuter la redirection
+        window.location.replace(redirectUrl);
+
+    </script>
+    <style>
+        body { background-color: #0A1931; color: #F5F5F0; font-family: 'Inter', sans-serif; text-align: center; padding-top: 50px; }
+        h1 { color: #B8860B; }
+    </style>
+</head>
+<body>
+    <h1>Erreur 404 - Redirection en cours...</h1>
+    <p>Si la redirection ne fonctionne pas, veuillez cliquer sur <a href="/" style="color: #B8860B;">Accueil</a></p>
+</body>
+</html>
